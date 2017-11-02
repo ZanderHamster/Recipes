@@ -5,12 +5,14 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.ViewGroup;
 
-import com.android.bstu.recipes.FavoriteIngredients.FavoriteIngredientsController;
-import com.android.bstu.recipes.FavoriteRecipes.FavoriteRecipesController;
+import com.android.bstu.recipes.animation.AnimationController;
+import com.android.bstu.recipes.favorite_ingredients.FavoriteIngredientsController;
+import com.android.bstu.recipes.favorite_recipes.FavoriteRecipesController;
 import com.bluelinelabs.conductor.changehandler.HorizontalChangeHandler;
 
 import com.bluelinelabs.conductor.Conductor;
@@ -40,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void pushController(Controller controller) {
+        Log.i("MainActivity", "Open " + controller.getClass().getSimpleName());
         router.pushController(RouterTransaction.with(controller)
                 .popChangeHandler(new HorizontalChangeHandler())
                 .pushChangeHandler(new HorizontalChangeHandler()));
@@ -58,9 +61,11 @@ public class MainActivity extends AppCompatActivity {
                             case R.id.menu_favorite_ingredients:
                                 pushController(new FavoriteIngredientsController());
                                 break;
+                            case R.id.menu_animation:
+                                pushController(new AnimationController());
+                                break;
                             default:
                                 break;
-
                         }
                         return false;
                     }

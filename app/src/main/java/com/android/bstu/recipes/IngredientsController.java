@@ -2,6 +2,7 @@ package com.android.bstu.recipes;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ public class IngredientsController extends Controller {
     @NonNull
     @Override
     protected View onCreateView(@NonNull LayoutInflater inflater, @NonNull ViewGroup container) {
+        Log.i("Ingredients", "onCreateView");
         view = inflater.inflate(R.layout.controller_ingredients, container, false);
         configureToolbar();
 
@@ -26,10 +28,20 @@ public class IngredientsController extends Controller {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.i("Ingredients", "Open drawer");
                 if (getActivity() != null) {
                     ((MainActivity) getActivity()).openNavigation();
                 }
             }
         });
+    }
+
+    @Override
+    protected void onDestroyView(@NonNull View view) {
+        if (getActivity() != null) {
+            ((MainActivity) getActivity()).closeNavigation();
+        }
+        Log.i("Ingredients", "onDestroyView");
+        super.onDestroyView(view);
     }
 }

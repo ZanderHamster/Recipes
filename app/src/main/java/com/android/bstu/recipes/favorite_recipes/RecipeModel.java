@@ -1,11 +1,9 @@
-package com.android.bstu.recipes.FavoriteRecipes;
+package com.android.bstu.recipes.favorite_recipes;
 
-import android.widget.ImageView;
-
-public class Recipe {
+public class RecipeModel {
     private String title;
     private String description;
-    private ImageView image;
+    private Boolean isFavorite;
 
     public String getTitle() {
         return title;
@@ -23,11 +21,11 @@ public class Recipe {
         this.description = description;
     }
 
-    public ImageView getImage() {
-        return image;
+    public Boolean getFavorite() {
+        return isFavorite;
     }
 
-    public void setImage(ImageView image) {
-        this.image = image;
+    public void setFavorite(Boolean favorite) {
+        isFavorite = favorite;
     }
 }

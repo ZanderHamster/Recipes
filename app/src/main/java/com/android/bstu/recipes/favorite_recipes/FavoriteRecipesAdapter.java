@@ -1,6 +1,7 @@
-package com.android.bstu.recipes.FavoriteRecipes;
+package com.android.bstu.recipes.favorite_recipes;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,22 +14,26 @@ import java.util.List;
 
 public class FavoriteRecipesAdapter extends RecyclerView.Adapter<FavoriteRecipesAdapter.FavoriteRecipesViewHolder> {
 
-    private List<Recipe> items;
-    private LayoutInflater inflater;
+    private List<RecipeModel> items;
 
     @Override
     public FavoriteRecipesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        inflater = LayoutInflater.from(parent.getContext());
+        Log.i("FavoriteRecipesAdapter", "onCreateViewHolder");
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.item_ingredient, parent, false);
         return new FavoriteRecipesViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(FavoriteRecipesViewHolder holder, int position) {
+        Log.i("FavoriteRecipesAdapter", "onBindViewHolder");
         holder.textView.setText(items.get(position).getTitle());
+            holder.imageView.setImageDrawable(
+                    holder.itemView.getResources().getDrawable(R.drawable.recipe_icon_defaulte));
     }
 
-    public void setItems(List<Recipe> items) {
+    void setItems(List<RecipeModel> items) {
+        Log.i("FavoriteRecipesAdapter", "setItems");
         this.items = items;
         notifyDataSetChanged();
     }
