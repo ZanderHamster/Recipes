@@ -7,12 +7,11 @@
 
     <android.support.v7.widget.Toolbar
         style="@style/ToolbarStyle"
-        android:id="@+id/toolbar_ingredients"
-        app:title="@string/ingredients_list" />
+        android:id="@+id/toolbar_recipes"
+        app:title="@string/recipes_list" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="test"
-        android:textSize="50sp" />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>

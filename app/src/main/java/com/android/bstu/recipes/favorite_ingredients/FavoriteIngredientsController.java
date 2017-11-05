@@ -1,15 +1,27 @@
 package com.android.bstu.recipes.favorite_ingredients;
 
 import android.support.annotation.NonNull;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.android.bstu.recipes.IngredientModel;
 import com.android.bstu.recipes.MainActivity;
 import com.android.bstu.recipes.R;
+import com.android.bstu.recipes.RecipeModel;
+import com.android.bstu.recipes.favorite_recipes.FavoriteRecipesAdapter;
+import com.android.bstu.recipes.recipe.RecipeController;
 import com.bluelinelabs.conductor.Controller;
+import com.bluelinelabs.conductor.RouterTransaction;
+import com.bluelinelabs.conductor.changehandler.HorizontalChangeHandler;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class FavoriteIngredientsController extends Controller {
     private Toolbar toolbar;
@@ -21,7 +33,7 @@ public class FavoriteIngredientsController extends Controller {
         Log.i("FavoriteIngredients", "onCreateView");
         view = inflater.inflate(R.layout.controller_favorite_ingredients, container, false);
         configureToolbar();
-
+        configureRecycler();
         return view;
     }
 
@@ -34,6 +46,27 @@ public class FavoriteIngredientsController extends Controller {
                 getRouter().handleBack();
             }
         });
+    }
+
+    private void configureRecycler() {
+        Log.i("FavoriteIngredients", "configureRecycler");
+        FavoriteIngredientsAdapter adapter = new FavoriteIngredientsAdapter();
+        adapter.setItems(getTestIngredients());
+        RecyclerView recycler = view.findViewById(R.id.recycler);
+        recycler.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        recycler.setAdapter(adapter);
+    }
+
+    private List<IngredientModel> getTestIngredients() {
+        Log.i("FavoriteIngredients", "getTestIngredients");
+        List<IngredientModel> list = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            IngredientModel ingredient = new IngredientModel();
+            ingredient.setTitle("titleIngredient " + i);
+            if (i % 2 == 0) ingredient.setFavorite(true);
+            list.add(ingredient);
+        }
+        return list;
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.android.bstu.recipes.favorite_recipes;
+package com.android.bstu.recipes.recipes;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
@@ -20,14 +20,15 @@ import com.bluelinelabs.conductor.changehandler.HorizontalChangeHandler;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FavoriteRecipesController extends Controller {
+public class RecipesController extends Controller {
+    private Toolbar toolbar;
     private View view;
 
     @NonNull
     @Override
     protected View onCreateView(@NonNull LayoutInflater inflater, @NonNull ViewGroup container) {
-        Log.i("FavoriteRecipes", "onCreateView");
-        view = inflater.inflate(R.layout.controller_favorite_recipes, container, false);
+        Log.i("Recipes", "onCreateView");
+        view = inflater.inflate(R.layout.controller_recipes, container, false);
         configureToolbar();
         configureRecycler();
 
@@ -36,9 +37,9 @@ public class FavoriteRecipesController extends Controller {
 
     private void configureRecycler() {
         Log.i("FavoriteRecipes", "configureRecycler");
-        FavoriteRecipesAdapter adapter = new FavoriteRecipesAdapter();
+        RecipesAdapter adapter = new RecipesAdapter();
         adapter.setItems(getTestRecipes());
-        adapter.setOnRecipeClickListener(new FavoriteRecipesAdapter.RecipeClickListener() {
+        adapter.setOnRecipeClickListener(new RecipesAdapter.RecipeClickListener() {
             @Override
             public void onClick(RecipeModel item) {
                 Log.i("FavoriteRecipes", "recipeOnClick");
@@ -59,6 +60,7 @@ public class FavoriteRecipesController extends Controller {
             RecipeModel recipe = new RecipeModel();
             recipe.setTitle("title " + i);
             if (i % 2 == 0) recipe.setFavorite(true);
+            else recipe.setFavorite(false);
             recipe.setDescription("Description " + i);
             list.add(recipe);
         }
@@ -66,13 +68,14 @@ public class FavoriteRecipesController extends Controller {
     }
 
     private void configureToolbar() {
-        Log.i("FavoriteRecipes", "configureToolbar");
-        Toolbar toolbar = view.findViewById(R.id.toolbar_favorite_recipes);
+        toolbar = view.findViewById(R.id.toolbar_recipes);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.i("FavoriteRecipes", "Toolbar back pressed");
-                getRouter().handleBack();
+                Log.i("Recipes", "Open drawer");
+                if (getActivity() != null) {
+                    ((MainActivity) getActivity()).openNavigation();
+                }
             }
         });
     }
@@ -82,7 +85,7 @@ public class FavoriteRecipesController extends Controller {
         if (getActivity() != null) {
             ((MainActivity) getActivity()).closeNavigation();
         }
-        Log.i("FavoriteRecipes", "onDestroyView");
+        Log.i("Recipes", "onDestroyView");
         super.onDestroyView(view);
     }
 }

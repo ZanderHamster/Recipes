@@ -11,8 +11,10 @@ import android.view.MenuItem;
 import android.view.ViewGroup;
 
 import com.android.bstu.recipes.animation.AnimationController;
+import com.android.bstu.recipes.cooking_time.CookingTimeController;
 import com.android.bstu.recipes.favorite_ingredients.FavoriteIngredientsController;
 import com.android.bstu.recipes.favorite_recipes.FavoriteRecipesController;
+import com.android.bstu.recipes.recipes.RecipesController;
 import com.bluelinelabs.conductor.changehandler.HorizontalChangeHandler;
 
 import com.bluelinelabs.conductor.Conductor;
@@ -34,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
         router = Conductor.attachRouter(this, container, savedInstanceState);
         if (!router.hasRootController()) {
-            router.setRoot(RouterTransaction.with(new IngredientsController()));
+            router.setRoot(RouterTransaction.with(new RecipesController()));
         }
         navigationDrawer = findViewById(R.id.navigationDrawer);
         drawerLayout = findViewById(R.id.drawerLayout);
@@ -63,6 +65,12 @@ public class MainActivity extends AppCompatActivity {
                                 break;
                             case R.id.menu_animation:
                                 pushController(new AnimationController());
+                                break;
+                            case R.id.menu_cooking_time:
+                                pushController(new CookingTimeController());
+                                break;
+                            case R.id.menu_all_ingredients:
+//                                pushController(new RecipesController());
                                 break;
                             default:
                                 break;

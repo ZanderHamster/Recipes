@@ -8,7 +8,13 @@
             android:id="@+id/menu_favorite_ingredients"
             android:title="@string/favorite_ingredients" />
         <item
+            android:id="@+id/menu_all_ingredients"
+            android:title="@string/ingredients_list" />
+        <item
             android:id="@+id/menu_animation"
             android:title="@string/animation" />
+        <item
+            android:id="@+id/menu_cooking_time"
+            android:title="@string/cooking_time" />
     </group>
 </menu>

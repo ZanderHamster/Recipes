@@ -1,8 +1,7 @@
-package com.android.bstu.recipes.favorite_recipes;
+package com.android.bstu.recipes;
 
-public class RecipeModel {
+public class IngredientModel {
     private String title;
-    private String description;
     private Boolean isFavorite;
 
     public String getTitle() {
@@ -13,14 +12,6 @@ public class RecipeModel {
         this.title = title;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public Boolean getFavorite() {
         return isFavorite;
     }
@@ -28,4 +19,5 @@ public class RecipeModel {
     public void setFavorite(Boolean favorite) {
         isFavorite = favorite;
     }
+
 }

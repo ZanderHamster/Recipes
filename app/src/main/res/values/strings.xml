@@ -2,7 +2,11 @@
     <string name="app_name">Recipes</string>
     <string name="favorite_recipes">Избранные рецепты</string>
     <string name="favorite_ingredients">Избранные ингредиенты</string>
+    <string name="recipes_list">Список рецептов</string>
     <string name="ingredients_list">Список ингредиентов</string>
     <string name="animation">Анимация</string>
     <string name="start_animation">Start animation</string>
+    <string name="demo_recipe_title">Блинчики с ванильными персиками</string>
+    <string name="demo_recipe_composition">Мука - 300г\nЯйцо куриное - 6 шт</string>
+    <string name="cooking_time">Время готовки</string>
 </resources>
