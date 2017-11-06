@@ -20,9 +20,19 @@ import com.bluelinelabs.conductor.changehandler.HorizontalChangeHandler;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Экран "Избранные рецепты"
+ */
 public class FavoriteRecipesController extends Controller {
     private View view;
 
+    /**
+     * Создание отображения которое было создано в xml
+     *
+     * @param inflater
+     * @param container
+     * @return
+     */
     @NonNull
     @Override
     protected View onCreateView(@NonNull LayoutInflater inflater, @NonNull ViewGroup container) {
@@ -34,6 +44,9 @@ public class FavoriteRecipesController extends Controller {
         return view;
     }
 
+    /**
+     * Настройка списка элементов
+     */
     private void configureRecycler() {
         Log.i("FavoriteRecipes", "configureRecycler");
         FavoriteRecipesAdapter adapter = new FavoriteRecipesAdapter();
@@ -42,6 +55,7 @@ public class FavoriteRecipesController extends Controller {
             @Override
             public void onClick(RecipeModel item) {
                 Log.i("FavoriteRecipes", "recipeOnClick");
+                // Переход на экран рецепта
                 getRouter().pushController(RouterTransaction.with(new RecipeController())
                         .popChangeHandler(new HorizontalChangeHandler())
                         .pushChangeHandler(new HorizontalChangeHandler()));
@@ -51,7 +65,11 @@ public class FavoriteRecipesController extends Controller {
         recycler.setLayoutManager(new LinearLayoutManager(getActivity()));
         recycler.setAdapter(adapter);
     }
-
+    /**
+     * Создание фейковых элементов
+     *
+     * @return - список рецептов
+     */
     private List<RecipeModel> getTestRecipes() {
         Log.i("FavoriteRecipes", "getTestRecipes");
         List<RecipeModel> list = new ArrayList<>();
@@ -65,6 +83,9 @@ public class FavoriteRecipesController extends Controller {
         return list;
     }
 
+    /**
+     * Настройка тулбара
+     */
     private void configureToolbar() {
         Log.i("FavoriteRecipes", "configureToolbar");
         Toolbar toolbar = view.findViewById(R.id.toolbar_favorite_recipes);

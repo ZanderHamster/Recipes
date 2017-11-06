@@ -20,6 +20,9 @@ import com.bluelinelabs.conductor.changehandler.HorizontalChangeHandler;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Экран рецептов
+ */
 public class RecipesController extends Controller {
     private Toolbar toolbar;
     private View view;

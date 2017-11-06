@@ -14,10 +14,19 @@ import com.android.bstu.recipes.RecipeModel;
 
 import java.util.List;
 
+/**
+ * Адаптер для отображения элементов списка "Избранных ингредиентов"
+ */
 public class FavoriteIngredientsAdapter extends RecyclerView.Adapter<FavoriteIngredientsAdapter.FavoriteIngredientsViewHolder> {
 
     private List<IngredientModel> items;
 
+    /**
+     * Создание отображения которое было создано в xml
+     * @param parent
+     * @param viewType
+     * @return
+     */
     @Override
     public FavoriteIngredientsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Log.i("FavoriteIngredients", "onCreateViewHolder");
@@ -26,6 +35,11 @@ public class FavoriteIngredientsAdapter extends RecyclerView.Adapter<FavoriteIng
         return new FavoriteIngredientsViewHolder(view);
     }
 
+    /**
+     * Присвоение необходимых значений полям
+     * @param holder - xml объект в котором мы будем устанавливать значения полям
+     * @param position - номер объекта в общем списке
+     */
     @Override
     public void onBindViewHolder(FavoriteIngredientsViewHolder holder, final int position) {
         Log.i("FavoriteIngredients", "onBindViewHolder");

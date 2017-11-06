@@ -23,10 +23,20 @@ import com.bluelinelabs.conductor.changehandler.HorizontalChangeHandler;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Экран "Избранные ингредиенты"
+ */
 public class FavoriteIngredientsController extends Controller {
     private Toolbar toolbar;
     private View view;
 
+    /**
+     * Создание отображения которое было создано в xml
+     *
+     * @param inflater
+     * @param container
+     * @return
+     */
     @NonNull
     @Override
     protected View onCreateView(@NonNull LayoutInflater inflater, @NonNull ViewGroup container) {
@@ -37,6 +47,9 @@ public class FavoriteIngredientsController extends Controller {
         return view;
     }
 
+    /**
+     * Настройка тублара
+     */
     private void configureToolbar() {
         toolbar = view.findViewById(R.id.toolbar_favorite_ingredients);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -48,6 +61,9 @@ public class FavoriteIngredientsController extends Controller {
         });
     }
 
+    /**
+     * Настройка списка элементов
+     */
     private void configureRecycler() {
         Log.i("FavoriteIngredients", "configureRecycler");
         FavoriteIngredientsAdapter adapter = new FavoriteIngredientsAdapter();
@@ -57,6 +73,11 @@ public class FavoriteIngredientsController extends Controller {
         recycler.setAdapter(adapter);
     }
 
+    /**
+     * Создание фейковых элементов
+     *
+     * @return - список ингредиентов
+     */
     private List<IngredientModel> getTestIngredients() {
         Log.i("FavoriteIngredients", "getTestIngredients");
         List<IngredientModel> list = new ArrayList<>();

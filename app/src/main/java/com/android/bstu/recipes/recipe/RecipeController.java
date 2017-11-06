@@ -13,6 +13,9 @@ import com.android.bstu.recipes.R;
 import com.android.bstu.recipes.RecipeModel;
 import com.bluelinelabs.conductor.Controller;
 
+/**
+ * Экран рецепта
+ */
 public class RecipeController extends Controller {
     private View view;
     private RecipeModel recipe = new RecipeModel();

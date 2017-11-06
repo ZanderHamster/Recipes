@@ -21,6 +21,10 @@ import com.bluelinelabs.conductor.Controller;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Экран "Время приготовления"
+ */
+
 public class CookingTimeController extends Controller {
     private View view;
     private LinearLayout cookingTimeLayout;
@@ -48,30 +52,36 @@ public class CookingTimeController extends Controller {
         itemsMeat.add(new String[]{"Говядина", "2-2,5 ч.", "20 мин.", "1,5-2 ч."});
         itemsMeat.add(new String[]{"Котлеты", "", "15-25 мин.", ""});
 
-        createTable("Каши",itemsPorridges);
-        createTable("Мясо",itemsMeat);
+        createTable("Каши", itemsPorridges);
+        createTable("Мясо", itemsMeat);
 
         return view;
     }
 
-    private void createTable(String title,List<String[]> items) {
+    private void createTable(String title, List<String[]> items) {
         Context context = getApplicationContext();
+        // Создаем таблицу
         TableLayout tableLayout = new TableLayout(getApplicationContext());
         tableLayout.setLayoutParams(new TableLayout.LayoutParams(
                 TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.WRAP_CONTENT));
         tableLayout.setBackgroundColor(Color.DKGRAY);
 
+        //Создаем строку
         TableRow tbrowTitle = new TableRow(context);
         tbrowTitle.setWeightSum(1);
         tbrowTitle.setGravity(Gravity.CENTER);
+        //Создаем элемент для заполнения строки
         TextView tvTitle = new TextView(context);
         tvTitle.setText(title);
         tvTitle.setTextSize(20f);
         tvTitle.setGravity(Gravity.CENTER);
         tvTitle.setTextColor(Color.RED);
+        //Добавляем элемент в строку
         tbrowTitle.addView(tvTitle);
+        //Добавляем строку в таблицу
         tableLayout.addView(tbrowTitle);
         for (int i = 0; i < items.size(); i++) {
+            //Создаем строку
             TableRow tbrow = new TableRow(context);
             tbrow.setWeightSum(4);
             TableRow.LayoutParams lp;
@@ -81,16 +91,20 @@ public class CookingTimeController extends Controller {
                     1f);
             lp.weight = 1;
             for (int j = 0; j < 4; j++) {
+                //Создаем элемент для заполнения строки
                 TextView tv = new TextView(context);
                 tv.setText(items.get(i)[j]);
                 tv.setTextColor(Color.WHITE);
                 tv.setLayoutParams(lp);
                 tv.setGravity(Gravity.CENTER);
                 tv.setPadding(10, 10, 10, 10);
+                //Добавляем элемент в строку
                 tbrow.addView(tv);
             }
+            //Добавляем строку в таблицу
             tableLayout.addView(tbrow);
         }
+        //Добавляем таблицу на экран
         cookingTimeLayout.addView(tableLayout);
     }
 
@@ -100,6 +114,7 @@ public class CookingTimeController extends Controller {
             @Override
             public void onClick(View view) {
                 Log.i("CookingTime", "Toolbar back pressed");
+                // Переходим на предыдущий экран
                 getRouter().handleBack();
             }
         });
@@ -108,6 +123,7 @@ public class CookingTimeController extends Controller {
     @Override
     protected void onDestroyView(@NonNull View view) {
         if (getActivity() != null) {
+            //Закрываем навигационную панель при разрушении экрана
             ((MainActivity) getActivity()).closeNavigation();
         }
         Log.i("CookingTime", "onDestroyView");

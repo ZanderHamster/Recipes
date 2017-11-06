@@ -14,6 +14,9 @@ import android.widget.ImageView;
 import com.android.bstu.recipes.R;
 import com.bluelinelabs.conductor.Controller;
 
+/**
+ * Экран анимации
+ */
 public class AnimationController extends Controller {
     private View view;
 
@@ -48,6 +51,7 @@ public class AnimationController extends Controller {
             @Override
             public void onClick(View view) {
                 Log.i("Animation", "Toolbar back pressed");
+                // Переходим на предыдущий экран
                 getRouter().handleBack();
             }
         });

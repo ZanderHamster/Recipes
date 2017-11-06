@@ -13,11 +13,22 @@ import com.android.bstu.recipes.RecipeModel;
 
 import java.util.List;
 
+/**
+ * Адаптер для отображения элементов списка "Избранных рецептов"
+ */
 public class FavoriteRecipesAdapter extends RecyclerView.Adapter<FavoriteRecipesAdapter.FavoriteRecipesViewHolder> {
 
     private List<RecipeModel> items;
 
     private RecipeClickListener onRecipeClickListener;
+
+    /**
+     * Создание отображения которое было создано в xml
+     *
+     * @param parent
+     * @param viewType
+     * @return
+     */
     @Override
     public FavoriteRecipesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Log.i("FavoriteRecipesAdapter", "onCreateViewHolder");
@@ -26,6 +37,12 @@ public class FavoriteRecipesAdapter extends RecyclerView.Adapter<FavoriteRecipes
         return new FavoriteRecipesViewHolder(view);
     }
 
+    /**
+     * Присвоение необходимых значений полям
+     *
+     * @param holder   - xml объект в котором мы будем устанавливать значения полям
+     * @param position - номер объекта в общем списке
+     */
     @Override
     public void onBindViewHolder(FavoriteRecipesViewHolder holder, final int position) {
         Log.i("FavoriteRecipesAdapter", "onBindViewHolder");
@@ -36,12 +53,17 @@ public class FavoriteRecipesAdapter extends RecyclerView.Adapter<FavoriteRecipes
             }
         });
         holder.textView.setText(items.get(position).getTitle());
-            holder.imageView.setImageDrawable(
-                    holder.itemView.getResources().getDrawable(R.drawable.recipe_icon_defaulte));
+        holder.imageView.setImageDrawable(
+                holder.itemView.getResources().getDrawable(R.drawable.recipe_icon_defaulte));
     }
+
     void setOnRecipeClickListener(RecipeClickListener listener) {
         this.onRecipeClickListener = listener;
     }
+
+    /**
+     * Слушатель для сообщения контроллеру о событии
+     */
     interface RecipeClickListener {
         void onClick(RecipeModel item);
     }
